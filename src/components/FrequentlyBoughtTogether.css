@@ -1,0 +1,208 @@
+
+.fbt-section {
+    margin: 64px auto;
+    padding: 40px;
+    max-width: 1400px;
+    background: #f6f5f1;
+    color: #24241f;
+  }
+  
+  .fbt-heading {
+    margin-bottom: 28px;
+  }
+  
+  .fbt-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+  }
+  
+  .fbt-heading h2 {
+    margin: 8px 0;
+    font-size: clamp(25px, 3vw, 38px);
+    font-weight: 500;
+  }
+  
+  .fbt-heading > p:last-child {
+    color: #77766f;
+  }
+  
+  .fbt-products {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+  
+  .fbt-card {
+    min-width: 0;
+    position: relative;
+  }
+  
+  .fbt-image-wrap {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #eae8e1;
+    margin-bottom: 14px;
+  }
+  
+  .fbt-image-wrap img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .fbt-image-placeholder {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    color: #77766f;
+    font-size: 13px;
+  }
+  
+  .fbt-current-label {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    padding: 7px 10px;
+    background: #fff;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  
+  .fbt-card h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 0 7px;
+  }
+  
+  .fbt-card > strong {
+    display: block;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  
+  .fbt-variant-label {
+    color: #77766f;
+    font-size: 12px;
+    margin: 0;
+  }
+  
+  .fbt-select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  
+  .fbt-select input {
+    width: 16px;
+    height: 16px;
+    accent-color: #25251f;
+  }
+  
+  .fbt-variant-control {
+    margin-top: 12px;
+  }
+  
+  .fbt-variant-control label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  
+  .fbt-variant-control select {
+    width: 100%;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #d4d1c8;
+    background: #fff;
+    color: #24241f;
+    font: inherit;
+    font-size: 12px;
+  }
+  
+  .fbt-unavailable {
+    font-size: 12px;
+    color: #a33;
+  }
+  
+  .fbt-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-top: 1px solid #d9d7cf;
+    padding-top: 24px;
+    margin-top: 28px;
+  }
+  
+  .fbt-summary > div > span {
+    display: block;
+    font-size: 12px;
+    color: #77766f;
+  }
+  
+  .fbt-summary > div > strong {
+    display: block;
+    font-size: 24px;
+    margin-top: 5px;
+  }
+  
+  .fbt-summary > div > p {
+    margin: 5px 0 0;
+    font-size: 12px;
+    color: #77766f;
+  }
+  
+  .fbt-add-button {
+    padding: 15px 22px;
+    border: 1px solid #24241f;
+    background: #24241f;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    transition: background 0.2s, color 0.2s;
+  }
+  
+  .fbt-add-button:hover:not(:disabled) {
+    background: transparent;
+    color: #24241f;
+  }
+  
+  .fbt-add-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  
+  @media (max-width: 700px) {
+    .fbt-section {
+      padding: 24px 16px;
+      margin: 40px auto;
+    }
+  
+    .fbt-products {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px 12px;
+    }
+  
+    .fbt-summary {
+      align-items: stretch;
+      flex-direction: column;
+    }
+  
+    .fbt-add-button {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 380px) {
+    .fbt-products {
+      grid-template-columns: 1fr;
+    }
+  }
+  

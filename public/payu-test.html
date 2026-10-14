@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThreadsRepublic | PayU Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 520px;
+      margin: 60px auto;
+      padding: 24px;
+      color: #222;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #111;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 18px;
+      box-sizing: border-box;
+    }
+
+    .note {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <h1>ThreadsRepublic</h1>
+  <h2>PayU Test Payment</h2>
+
+  <p class="note">
+    This page requests payment data from your backend and
+    redirects to PayU's test gateway.
+  </p>
+
+  <label for="orderId">Order ID</label>
+  <input
+    id="orderId"
+    placeholder="Enter your new PAYU order ID"
+  />
+
+  <button id="payButton">Continue to PayU</button>
+
+  <p id="message" class="note"></p>
+
+  <script>
+    const API_URL = "http://localhost:5000";
+
+    document
+      .getElementById("payButton")
+      .addEventListener("click", async () => {
+        const orderId = document
+          .getElementById("orderId")
+          .value.trim();
+
+        const message = document.getElementById("message");
+        const button = document.getElementById("payButton");
+
+        if (!orderId) {
+          message.textContent = "Please enter an order ID.";
+          return;
+        }
+
+        button.disabled = true;
+        message.textContent = "Preparing payment...";
+
+        try {
+          const response = await fetch(
+            `${API_URL}/api/payments/payu`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ orderId })
+            }
+          );
+
+          const result = await response.json();
+
+          if (!response.ok || !result.success) {
+            throw new Error(
+              result.message || "Unable to initialize payment."
+            );
+          }
+
+          if (!result.data || !result.paymentUrl) {
+            throw new Error("Incomplete payment response.");
+          }
+
+          const form = document.createElement("form");
+          form.method = "POST";
+          form.action = result.paymentUrl;
+
+          Object.entries(result.data).forEach(([key, value]) => {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = key;
+            input.value = value ?? "";
+            form.appendChild(input);
+          });
+
+          document.body.appendChild(form);
+          form.submit();
+        } catch (error) {
+          message.textContent = error.message;
+          button.disabled = false;
+        }
+      });
+  </script>
+</body>
+</html>

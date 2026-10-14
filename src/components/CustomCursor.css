@@ -1,0 +1,80 @@
+
+.custom-cursor {
+    pointer-events: none;
+  }
+  
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform;
+  }
+  
+  .custom-cursor-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #171717;
+    transition: opacity 180ms ease;
+  }
+  
+  .custom-cursor-ring {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border: 1px solid rgb(23 23 23 / 48%);
+    border-radius: 50%;
+    background: rgb(250 249 246 / 8%);
+    transition:
+      width 250ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      height 250ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      background 250ms ease,
+      border-color 250ms ease,
+      opacity 180ms ease;
+  }
+  
+  .custom-cursor-dot.cursor-visible,
+  .custom-cursor-ring.cursor-visible {
+    opacity: 1;
+  }
+  
+  .custom-cursor-ring.cursor-hover {
+    width: 54px;
+    height: 54px;
+    border-color: #171717;
+    background: rgb(23 23 23 / 5%);
+  }
+  
+  .custom-cursor-ring.cursor-view {
+    width: 78px;
+    height: 78px;
+    border-color: #171717;
+    background: #171717;
+    color: #fff;
+  }
+  
+  .custom-cursor-ring > span {
+    opacity: 0;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    transition: opacity 160ms ease;
+  }
+  
+  .custom-cursor-ring > span.cursor-label-visible {
+    opacity: 1;
+  }
+  
+  /* Hide the custom cursor on touch devices and reduced-motion setups. */
+  @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+    .custom-cursor {
+      display: none !important;
+    }
+  }
+  
